@@ -1,6 +1,7 @@
 import base64
 import hashlib
 import bcrypt
+import random
 
 
 def create_string_hash(string: str):
@@ -8,7 +9,7 @@ def create_string_hash(string: str):
     string = base64.b64encode(hashlib.sha256(string).digest())
     hashed = bcrypt.hashpw(
         string,
-        bcrypt.gensalt(12)
+        bcrypt.gensalt(random.randint(10, 16))
     )
     return hashed.decode()
 
